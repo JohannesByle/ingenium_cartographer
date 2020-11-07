@@ -17,7 +17,7 @@ source install_isolated/setup.bash
 cp "$cwd/config.lua" install_isolated/share/cartographer_ros/configuration_files/my_robot.lua
 # Copy launch file
 #cp install_isolated/share/cartographer_ros/launch/demo_backpack_3d.launch install_isolated/share/cartographer_ros/launch/demo_my_robot.launch
-cp "$cwd"/custom_2.launch install_isolated/share/cartographer_ros/launch/demo_my_robot.launch
+cp "$cwd"/custom.launch install_isolated/share/cartographer_ros/launch/demo_my_robot.launch
 # Validate bag
 cartographer_rosbag_validate -bag_filename "$file"
 # Start slam
