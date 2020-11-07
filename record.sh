@@ -1,11 +1,18 @@
 source devel/setup.bash
 
+# Start the connection to the imu (and start roscore in the background)
 roslaunch ros_mscl microstrain.launch&
 sleep 5
+
+# Start the connection to the lidar
 rosrun velodyne_driver velodyne_node _model:=32C&
 sleep 5
+
+# Start recording specific nodes from the lidar and the imu
 rosbag record /gx5/imu/data /velodyne_packets&
 sleep 5
+
+# Wait for user input and then attempt to kill gracefully
 exit_code="n"
 while [[ "$exit_code" != "y" ]]
 do
