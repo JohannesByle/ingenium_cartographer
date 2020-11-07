@@ -1,3 +1,8 @@
-/inspect_bag.py
+/*.py
+/_mscl.so
 /venv/
 /.idea/
+/*.bag
+/*.pbstream
+/bag_files/
+/output_files/

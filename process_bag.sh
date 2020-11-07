@@ -2,8 +2,8 @@
 cwd=$(pwd)
 file="$cwd/$1"
 if [ ! -f "$file" ]; then
-    echo "$file is not a file."
-    return 1
+  echo "$file is not a file."
+  return 1
 fi
 
 # Move to catkin workspace
@@ -14,10 +14,10 @@ source /opt/ros/noetic/setup.bash
 source install_isolated/setup.bash
 
 # Copy config file
-cp "$cwd/config.lua" install_isolated/share/cartographer_ros/configuration_files/my_robot.lua
+cp "$cwd/cartographer_config/config.lua" install_isolated/share/cartographer_ros/configuration_files/my_robot.lua
 # Copy launch file
 #cp install_isolated/share/cartographer_ros/launch/demo_backpack_3d.launch install_isolated/share/cartographer_ros/launch/demo_my_robot.launch
-cp "$cwd"/custom.launch install_isolated/share/cartographer_ros/launch/demo_my_robot.launch
+cp "$cwd"/cartographer_config/custom.launch install_isolated/share/cartographer_ros/launch/demo_my_robot.launch
 # Validate bag
 cartographer_rosbag_validate -bag_filename "$file"
 # Start slam
