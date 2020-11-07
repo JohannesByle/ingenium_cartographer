@@ -13,15 +13,21 @@ source /opt/ros/noetic/setup.bash
 # Run cartographer setup
 source install_isolated/setup.bash
 
-# Copy config file
-cp "$cwd/cartographer_config/config.lua" install_isolated/share/cartographer_ros/configuration_files/my_robot.lua
-# Copy launch file
-#cp install_isolated/share/cartographer_ros/launch/demo_backpack_3d.launch install_isolated/share/cartographer_ros/launch/demo_my_robot.launch
-cp "$cwd"/cartographer_config/custom.launch install_isolated/share/cartographer_ros/launch/demo_my_robot.launch
+# Copy config lua file
+cp "$cwd/cartographer_config/config.lua" install_isolated/share/cartographer_ros/configuration_files/ingenium.lua
+# Copy backpack launch file
+cp "$cwd"/cartographer_config/backpack_3d.launch install_isolated/share/cartographer_ros/launch/ingenium_backpack_3d.launch
+# Copy backpack urdf file
+cp "$cwd"/cartographer_config/backpack_3d.urdf install_isolated/share/cartographer_ros/urdf/ingenium_backpack_3d.urdf
+# Copy rviz config file
+cp "$cwd"/cartographer_config/demo_3d.rviz install_isolated/share/cartographer_ros/configuration_files/ingenium.rviz
+# Copy main launch file
+cp "$cwd"/cartographer_config/main.launch install_isolated/share/cartographer_ros/launch/ingenium.launch
+
 # Validate bag
 cartographer_rosbag_validate -bag_filename "$file"
 # Start slam
-roslaunch cartographer_ros demo_my_robot.launch bag_filename:="$file" pose_graph_filename:="$file".pbstream
+roslaunch cartographer_ros ingenium.launch bag_filename:="$file" pose_graph_filename:="$file".pbstream
 
 # Move back to old directory
 cd - || exit
