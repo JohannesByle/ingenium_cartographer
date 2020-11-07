@@ -8,8 +8,12 @@ sleep 5
 rosrun velodyne_driver velodyne_node _model:=32C&
 sleep 5
 
+# Start conversion from lidar to pointcloud
+rosrun nodelet nodelet standalone velodyne_pointcloud/TransformNodelet&
+sleep 5
+
 # Start recording specific nodes from the lidar and the imu
-rosbag record /gx5/imu/data /velodyne_packets&
+rosbag record /gx5/imu/data /velodyne_points&
 sleep 5
 
 # Wait for user input and then attempt to kill gracefully
