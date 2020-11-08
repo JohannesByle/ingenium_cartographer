@@ -15,20 +15,22 @@
 -->
 
 <launch>
-    <!-- cartographer_config/backpack_3d.urdf -->
+    <!-- cartographer_config/lidar_stick.urdf -->
     <param name="robot_description" textfile="$(find cartographer_ros)/urdf/ingenium_backpack_3d.urdf"/>
 
     <node name="robot_state_publisher" pkg="robot_state_publisher"
           type="robot_state_publisher"/>
 
-    <!-- cartographer_config/config.lua -->
+    <!-- cartographer_config/slam.lua -->
     <node name="cartographer_node" pkg="cartographer_ros"
           type="cartographer_node" args="
           -configuration_directory $(find cartographer_ros)/configuration_files
           -configuration_basename ingenium.lua"
           output="screen">
-        <remap from="points2_1" to="horizontal_laser_3d"/>
-        <remap from="points2_2" to="vertical_laser_3d"/>
+        <!--        <remap from="points2_1" to="horizontal_laser_3d"/>-->
+        <!--        <remap from="points2_2" to="vertical_laser_3d"/>-->
+        <remap from="imu" to="/gx5/imu/data"/>
+        <remap from="points2" to="/velodyne_points"/>
     </node>
 
     <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"

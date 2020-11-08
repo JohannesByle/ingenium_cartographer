@@ -12,14 +12,13 @@
 -->
 
 <launch>
-    <param name="/use_sim_time" value="true"/>
-
-    <!-- cartographer_config/backpack_3d.launch -->
-    <include file="$(find cartographer_ros)/launch/ingenium_backpack_3d.launch"/>
-
-    <!-- cartographer_config/demo_3d.rviz -->
-    <node name="rviz" pkg="rviz" type="rviz" required="true"
-          args="-d $(find cartographer_ros)/configuration_files/ingenium.rviz"/>
-    <node name="playbag" pkg="rosbag" type="play"
-          args="--clock $(arg bag_filename)"/>
+  <node name="cartographer_assets_writer" pkg="cartographer_ros" required="true"
+      type="cartographer_assets_writer" args="
+          -configuration_directory $(find cartographer_ros)/configuration_files
+          -configuration_basename assets_writer_backpack_3d.lua
+          -urdf_filename $(find cartographer_ros)/urdf/backpack_3d.urdf
+          -bag_filenames $(arg bag_filenames)
+          -pose_graph_filename $(arg pose_graph_filename)"
+      output="screen">
+  </node>
 </launch>

@@ -71,16 +71,16 @@ Visualization Manager:
         All Enabled: true
         base_link:
           Value: true
-        horizontal_vlp16_link:
+        velodyne:
           Value: true
-        imu_link:
+        gx5_link:
           Value: true
         map:
           Value: true
         odom:
           Value: true
-        vertical_vlp16_link:
-          Value: true
+      #        vertical_vlp16_link:
+      #          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
@@ -90,12 +90,10 @@ Visualization Manager:
         map:
           odom:
             base_link:
-              horizontal_vlp16_link:
-                {}
-              imu_link:
-                {}
-              vertical_vlp16_link:
-                {}
+              velodyne:
+                { }
+              gx5_link:
+                { }
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -112,21 +110,21 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        horizontal_vlp16_link:
+        velodyne:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        imu_link:
+        gx5_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        vertical_vlp16_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
+      #        vertical_vlp16_link:
+      #          Alpha: 1
+      #          Show Axes: false
+      #          Show Trail: false
+      #          Value: true
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
