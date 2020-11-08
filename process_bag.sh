@@ -26,8 +26,12 @@ done
 # Validate bag
 cartographer_rosbag_validate -bag_filename "$file"
 # Start slam
-#roslaunch cartographer_ros ingenium_slam.launch bag_filenames:="$file" urdf_filename:="$file/cartographer_config/lidar_stick.urdf"
+roslaunch cartographer_ros ingenium_slam.launch bag_filenames:="$file" urdf_filename:="$file/cartographer_config/lidar_stick.urdf"&
 
+# Wait for slam to finish
+while [ ! -f "$file.pbstream" ]; do
+  sleep 5
+done
 
 roslaunch cartographer_ros ingenium_localization.launch pose_graph_filename:="$file.pbstream" bag_filenames:="$file"
 
