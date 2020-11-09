@@ -24,13 +24,14 @@ options = {
     odom_frame = "odom",
     provide_odom_frame = true,
     publish_frame_projected_to_2d = false,
+    use_pose_extrapolator = true,
     use_odometry = false,
     use_nav_sat = false,
     use_landmarks = false,
     num_laser_scans = 0,
     num_multi_echo_laser_scans = 0,
     num_subdivisions_per_laser_scan = 1,
-    num_point_clouds = 2,
+    num_point_clouds = 1,
     lookup_transform_timeout_sec = 0.2,
     submap_publish_period_sec = 0.3,
     pose_publish_period_sec = 5e-3,
@@ -42,7 +43,7 @@ options = {
     landmarks_sampling_ratio = 1.,
 }
 
-TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 100
+TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 160
 
 MAP_BUILDER.use_trajectory_builder_3d = true
 MAP_BUILDER.num_background_threads = 7
