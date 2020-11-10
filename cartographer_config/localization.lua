@@ -84,6 +84,10 @@ options = {
             filename = "xray_xz_all_color",
             transform = XZ_TRANSFORM,
         },
+        {
+            action = "write_pcd",
+            filename = "point_cloud",
+        },
     }
 }
 
