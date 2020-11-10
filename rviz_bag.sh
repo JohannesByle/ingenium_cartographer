@@ -19,7 +19,5 @@ sleep 2
 rosbag play "$file" &
 sleep 2
 
-rosrun nodelet nodelet standalone velodyne_pointcloud/TransformNodelet &
+rosrun nodelet nodelet standalone velodyne_pointcloud/TransformNodelet
 sleep 2
-
-rviz
