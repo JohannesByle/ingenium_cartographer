@@ -12,13 +12,21 @@
 -->
 
 <launch>
-  <node name="cartographer_assets_writer" pkg="cartographer_ros" required="true"
-      type="cartographer_assets_writer" args="
+    <!--  <node name="cartographer_assets_writer" pkg="cartographer_ros" required="true"-->
+    <!--      type="cartographer_assets_writer" args="-->
+    <!--          -configuration_directory $(find cartographer_ros)/configuration_files-->
+    <!--          -configuration_basename assets_writer_backpack_3d.lua-->
+    <!--          -urdf_filename $(find cartographer_ros)/urdf/backpack_3d.urdf-->
+    <!--          -bag_filenames $(arg bag_filenames)-->
+    <!--          -pose_graph_filename $(arg pose_graph_filename)"-->
+    <!--      output="screen">-->
+    <node name="cartographer_assets_writer" pkg="cartographer_ros" required="true"
+          type="cartographer_assets_writer" args="
           -configuration_directory $(find cartographer_ros)/configuration_files
-          -configuration_basename assets_writer_backpack_3d.lua
-          -urdf_filename $(find cartographer_ros)/urdf/backpack_3d.urdf
+          -configuration_basename ingenium_localization.lua
+          -urdf_filename $(find cartographer_ros)/urdf/ingenium_lidar_stick.urdf
           -bag_filenames $(arg bag_filenames)
           -pose_graph_filename $(arg pose_graph_filename)"
-      output="screen">
-  </node>
+          output="screen">
+    </node>
 </launch>

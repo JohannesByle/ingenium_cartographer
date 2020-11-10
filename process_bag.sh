@@ -13,7 +13,6 @@ source /opt/ros/noetic/setup.bash
 # Run cartographer setup
 source install_isolated/setup.bash
 
-
 config_files=("slam.launch" "slam.lua" "localization.launch" "localization.lua" "lidar_stick.urdf")
 for config_file in "${config_files[@]}"; do
   directory="${config_file##*.}"
@@ -26,7 +25,12 @@ done
 # Validate bag
 cartographer_rosbag_validate -bag_filename "$file"
 # Start slam
-roslaunch cartographer_ros ingenium_slam.launch bag_filenames:="$file" urdf_filename:="$file/cartographer_config/lidar_stick.urdf"&
+if [ ! -f "$file.pbstream" ]; then
+  roslaunch cartographer_ros ingenium_slam.launch bag_filenames:="$file" urdf_filename:="$file/cartographer_config/lidar_stick.urdf" &
+else
+  echo -e "\e[38;5;82m.pbstream file already exists, skipping slam and going straight to localization"
+  echo
+fi
 
 # Wait for slam to finish
 while [ ! -f "$file.pbstream" ]; do

@@ -12,50 +12,79 @@
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
 
-include "map_builder.lua"
-include "trajectory_builder.lua"
+VOXEL_SIZE = 5e-2
+
+include "transform.lua"
 
 options = {
-    map_builder = MAP_BUILDER,
-    trajectory_builder = TRAJECTORY_BUILDER,
-    map_frame = "map",
     tracking_frame = "base_link",
-    published_frame = "base_link",
-    odom_frame = "odom",
-    provide_odom_frame = true,
-    publish_frame_projected_to_2d = false,
-    use_odometry = false,
-    use_nav_sat = false,
-    use_landmarks = false,
-    num_laser_scans = 0,
-    num_multi_echo_laser_scans = 0,
-    num_subdivisions_per_laser_scan = 1,
-    num_point_clouds = 2,
-    lookup_transform_timeout_sec = 0.2,
-    submap_publish_period_sec = 0.3,
-    pose_publish_period_sec = 5e-3,
-    trajectory_publish_period_sec = 30e-3,
-    rangefinder_sampling_ratio = 1.,
-    odometry_sampling_ratio = 1.,
-    fixed_frame_pose_sampling_ratio = 1.,
-    imu_sampling_ratio = 1.,
-    landmarks_sampling_ratio = 1.,
+    pipeline = {
+        {
+            action = "min_max_range_filter",
+            min_range = 1.,
+            max_range = 60.,
+        },
+        {
+            action = "dump_num_points",
+        },
+
+        -- Gray X-Rays. These only use geometry to color pixels.
+        {
+            action = "write_xray_image",
+            voxel_size = VOXEL_SIZE,
+            filename = "xray_yz_all",
+            transform = YZ_TRANSFORM,
+        },
+        {
+            action = "write_xray_image",
+            voxel_size = VOXEL_SIZE,
+            filename = "xray_xy_all",
+            transform = XY_TRANSFORM,
+        },
+        {
+            action = "write_xray_image",
+            voxel_size = VOXEL_SIZE,
+            filename = "xray_xz_all",
+            transform = XZ_TRANSFORM,
+        },
+
+        -- Now we recolor our points by frame and write another batch of X-Rays. It
+        -- is visible in them what was seen by the horizontal and the vertical
+        -- laser.
+        --        {
+        --            action = "color_points",
+        --            frame_id = "horizontal_vlp16_link",
+        --            color = { 255., 0., 0. },
+        --        },
+        --        {
+        --            action = "color_points",
+        --            frame_id = "vertical_vlp16_link",
+        --            color = { 0., 255., 0. },
+        --        },
+        {
+            action = "color_points",
+            frame_id = "velodyne",
+            color = { 255., 0., 0. },
+        },
+        {
+            action = "write_xray_image",
+            voxel_size = VOXEL_SIZE,
+            filename = "xray_yz_all_color",
+            transform = YZ_TRANSFORM,
+        },
+        {
+            action = "write_xray_image",
+            voxel_size = VOXEL_SIZE,
+            filename = "xray_xy_all_color",
+            transform = XY_TRANSFORM,
+        },
+        {
+            action = "write_xray_image",
+            voxel_size = VOXEL_SIZE,
+            filename = "xray_xz_all_color",
+            transform = XZ_TRANSFORM,
+        },
+    }
 }
-
-TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 100
-
-MAP_BUILDER.use_trajectory_builder_3d = true
-MAP_BUILDER.num_background_threads = 7
-POSE_GRAPH.optimization_problem.huber_scale = 5e2
-POSE_GRAPH.optimize_every_n_nodes = 320
-POSE_GRAPH.constraint_builder.sampling_ratio = 0.03
-POSE_GRAPH.optimization_problem.ceres_solver_options.max_num_iterations = 10
-POSE_GRAPH.constraint_builder.min_score = 0.62
-POSE_GRAPH.constraint_builder.global_localization_min_score = 0.66
-
-TRAJECTORY_BUILDER.pure_localization_trimmer = {
-    max_submaps_to_keep = 3,
-}
-POSE_GRAPH.optimize_every_n_nodes = 100
 
 return options
