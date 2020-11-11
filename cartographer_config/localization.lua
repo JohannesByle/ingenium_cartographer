@@ -86,7 +86,11 @@ options = {
         },
         {
             action = "write_pcd",
-            filename = "point_cloud",
+            filename = "point_cloud.pcd",
+        },
+        {
+            action = "write_ply",
+            filename = "point_cloud.ply",
         },
     }
 }
