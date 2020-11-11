@@ -40,4 +40,19 @@ done
 roslaunch cartographer_ros ingenium_localization.launch pose_graph_filename:="$file.pbstream" bag_filenames:="$file"
 
 # Move back to old directory
-cd - || exit
+cd "$(dirname "$file")" || exit
+
+# Make directory for new files
+output_dir="${file%.*}_output_files"
+if [ ! -d "$output_dir" ]; then
+  mkdir "$output_dir"
+fi
+
+# Move files into new directory, and then move the .pbstream file and the original bag file back
+mv "$file"* "$output_dir"
+cd "$output_dir" || exit
+mv "$(basename "$file").pbstream" "$(dirname "$file")"
+mv "$(basename "$file")" "$(dirname "$file")"
+
+# Return to original directory
+cd "$cwd" || exit
