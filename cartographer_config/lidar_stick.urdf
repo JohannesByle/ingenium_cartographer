@@ -20,7 +20,7 @@
         <visual>
             <origin xyz="0.0 0.0 0.0"/>
             <geometry>
-                <box size="0.06 0.04 0.02"/>
+                <box size="0.036 0.024 0.0111"/>
             </geometry>
         </visual>
     </link>
@@ -29,7 +29,7 @@
         <visual>
             <origin xyz="0.0 0.0 0.0"/>
             <geometry>
-                <cylinder length="0.07" radius="0.05"/>
+                <cylinder length="0.0869" radius="0.05"/>
             </geometry>
         </visual>
     </link>
@@ -45,7 +45,7 @@
     <joint name="velodyne_joint" type="fixed">
         <parent link="base_link"/>
         <child link="velodyne"/>
-        <origin xyz="0.1 0 0.1" rpy="0. 0 0"/>
+        <origin xyz="0.030988 0 0.087378" rpy="0. 0 0"/>
     </joint>
 
 </robot>
