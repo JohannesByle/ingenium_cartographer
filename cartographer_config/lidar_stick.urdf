@@ -39,13 +39,13 @@
     <joint name="gx5_link_joint" type="fixed">
         <parent link="base_link"/>
         <child link="gx5_link"/>
-        <origin xyz="0 0 0" rpy="0 -1.57079632679 3.14159265358979"/>
+        <origin xyz="0 0 0" rpy="0 -1.57079632679 0"/>
     </joint>
 
     <joint name="velodyne_joint" type="fixed">
         <parent link="base_link"/>
         <child link="velodyne"/>
-        <origin xyz="0.030988 0 0.087378" rpy="0. 0 0"/>
+        <origin xyz="-0.030988 0 0.087378" rpy="0. 0 0"/>
     </joint>
 
 </robot>
