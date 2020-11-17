@@ -24,14 +24,13 @@ done
 
 # Validate bag
 cartographer_rosbag_validate -bag_filename "$file"
-# Start slam
-if [ ! -f "$file.pbstream" ]; then
-  roslaunch cartographer_ros ingenium_slam.launch bag_filenames:="$file" urdf_filename:="$file/cartographer_config/lidar_stick.urdf" &
-else
-  echo -e "\e[38;5;82m.pbstream file already exists, skipping slam and going straight to localization"
-  echo
+# Remove old .pbstream file
+if [ -f "$file.pbstream" ]; then
+  echo -e ".pbstream file already exists, will be deleted"
+  rm "$file.pbstream"
 fi
-
+# Start slam
+roslaunch cartographer_ros ingenium_slam.launch bag_filenames:="$file" urdf_filename:="$file/cartographer_config/lidar_stick.urdf" &
 # Wait for slam to finish
 while [ ! -f "$file.pbstream" ]; do
   sleep 5
