@@ -9,7 +9,7 @@ rosrun velodyne_driver velodyne_node _model:=32C &
 sleep 5
 
 # Start conversion from lidar to pointcloud
-rosrun nodelet nodelet standalone velodyne_pointcloud/TransformNodelet &
+rosrun nodelet nodelet standalone velodyne_pointcloud/TransformNodelet _model:=32C&
 sleep 10
 
 # Start recording specific nodes from the lidar and the imu
