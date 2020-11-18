@@ -1,4 +1,7 @@
 source devel/setup.bash
+# Start recording specific nodes from the lidar and the imu
+rosbag record /gx5/imu/data /velodyne_points &
+sleep 5
 
 # Start the connection to the imu (and start roscore in the background)
 roslaunch ros_mscl microstrain.launch &
@@ -10,10 +13,6 @@ sleep 5
 
 # Start conversion from lidar to pointcloud
 rosrun nodelet nodelet standalone velodyne_pointcloud/TransformNodelet _model:=32C _calibration:="$(rospack find velodyne_pointcloud)"/params/VeloView-VLP-32C.yaml&
-sleep 10
-
-# Start recording specific nodes from the lidar and the imu
-rosbag record /gx5/imu/data /velodyne_points &
 sleep 5
 
 # Wait for user input and then attempt to kill gracefully
