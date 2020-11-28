@@ -5,11 +5,11 @@ roscore&
 sleep 5
 
 # Start the connection to the imu (and start roscore in the background)
-roslaunch ros_mscl microstrain.launch &
+roslaunch ros_mscl microstrain.launch&
 
 # Start the connection to the lidar
 # rosrun velodyne_driver velodyne_node _model:=32C _npackets:=1 _rpm:=300&
-roslaunch velodyne_pointcloud VLP-32C_points.launch
+roslaunch velodyne_pointcloud VLP-32C_points.launch&
 
 # Start conversion from lidar to pointcloud
 # rosrun nodelet nodelet standalone velodyne_pointcloud/TransformNodelet _model:=32C _calibration:="$(rospack find velodyne_pointcloud)"/params/VeloView-VLP-32C.yaml&
