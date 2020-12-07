@@ -1,0 +1,8 @@
+prefix=/home/johannes/catkin_ws/src/forced_conversion/cmake-build-debug/devel
+
+Name: forced_conversion
+Description: Description of forced_conversion
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
