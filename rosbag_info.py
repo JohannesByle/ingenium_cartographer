@@ -32,12 +32,13 @@ def get_info(bag_file, topic_filter=None):
 
 # get_info("bags/2020-11-18-20-32-47.bag")
 folder = "/home/johannes/Downloads"
-for file in os.listdir(folder):
-    if not file.endswith("bag") or not (file.startswith("b3") or file.startswith("2020")):
-        continue
-    print()
-    print(file)
-    try:
-        get_info(os.path.join(folder, file), topic_filter=["sensor_msgs/PointCloud2", "velodyne_msgs/VelodyneScan"])
-    except Exception as e:
-        print("{}: {}".format(file, e))
+# for file in os.listdir(folder):
+#     if not file.endswith("bag") or not (file.startswith("b3") or file.startswith("2020")):
+#         continue
+#     print()
+#     print(file)
+#     try:
+#         get_info(os.path.join(folder, file), topic_filter=["sensor_msgs/PointCloud2", "velodyne_msgs/VelodyneScan"])
+#     except Exception as e:
+#         print("{}: {}".format(file, e))
+get_info("bags/test.bag", topic_filter=["sensor_msgs/PointCloud2", "velodyne_msgs/VelodyneScan"])
