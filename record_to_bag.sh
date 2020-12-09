@@ -25,4 +25,4 @@ echo "$exit_code"
 echo "Exiting gracefully:"
 rosnode kill -a &
 sleep 5
-kill -9
+pkill roscore 
