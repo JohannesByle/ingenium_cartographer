@@ -2,6 +2,7 @@ import os
 import matplotlib.pyplot as plt
 from rosbag import Bag
 import numpy as np
+import sys
 
 
 def get_info(bag_file, topic_filter=None):
@@ -25,20 +26,15 @@ def get_info(bag_file, topic_filter=None):
         plt.hist(times)
         plt.yscale("log")
         plt.title("{}: {}".format(os.path.basename(bag_file), topic))
-        plt.savefig(os.path.join("with_filter/", "{}.{}.png".format(os.path.basename(bag_file), topic[1:])))
+        if not os.path.exists("images"):
+            os.makedirs("images")
+        plt.savefig(os.path.join("images/", "{}.{}.png".format(os.path.basename(bag_file), topic.replace("/", ""))))
         plt.cla()
         # plt.show()
 
 
-# get_info("bags/2020-11-18-20-32-47.bag")
-folder = "/home/johannes/Downloads"
-# for file in os.listdir(folder):
-#     if not file.endswith("bag") or not (file.startswith("b3") or file.startswith("2020")):
-#         continue
-#     print()
-#     print(file)
-#     try:
-#         get_info(os.path.join(folder, file), topic_filter=["sensor_msgs/PointCloud2", "velodyne_msgs/VelodyneScan"])
-#     except Exception as e:
-#         print("{}: {}".format(file, e))
-get_info("bags/test.bag", topic_filter=["sensor_msgs/PointCloud2", "velodyne_msgs/VelodyneScan"])
+if __name__ == "__main__":
+    if len(sys.argv) > 2:
+        get_info(sys.argv[1], sys.argv[2])
+    else:
+        get_info(sys.argv[1])
