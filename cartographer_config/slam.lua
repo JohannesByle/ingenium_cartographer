@@ -34,7 +34,7 @@ options = {
     num_point_clouds = 1,
     lookup_transform_timeout_sec = 0.2,
     submap_publish_period_sec = 0.3,
-    pose_publish_period_sec = 5e-3,
+    --    pose_publish_period_sec = 5e-3,
     trajectory_publish_period_sec = 30e-3,
     pose_publish_period_sec = 30e-3,
     rangefinder_sampling_ratio = 1.,
@@ -44,7 +44,7 @@ options = {
     landmarks_sampling_ratio = 1.,
 }
 
-TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 33
+TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 160
 
 MAP_BUILDER.use_trajectory_builder_3d = true
 MAP_BUILDER.num_background_threads = 7
