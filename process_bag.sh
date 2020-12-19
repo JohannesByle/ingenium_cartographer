@@ -62,6 +62,8 @@ mv "$(basename "$file").pbstream" "$(dirname "$file")"
 mv "$(basename "$file")" "$(dirname "$file")"
 
 # Save a small copy of pointcloud
+filename=$(basename -- "$file")
+filename="${filename%.*}"
 CloudCompare -SILENT -O "$output_dir/$filename.bag_point_cloud.ply" -SS RANDOM 5000000
 
 # Return to original directory
