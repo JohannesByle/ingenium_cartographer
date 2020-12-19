@@ -23,13 +23,12 @@ for config_file in "${config_files[@]}"; do
 done
 
 # Check if bag contains point or packets, if packets forcefully convert
-if ! [[ $( rosbag info "$file") =~ \/velodyne_points\ *[0-9]*\ msgs ]]; then
+if ! [[ $(rosbag info "$file") =~ \/velodyne_points\ *[0-9]*\ msgs ]]; then
   echo "Bag does not contain pointcloud, forcefully converting"
   new_file="${file%.*}_pointcloud.bag"
   $(find . -name inquisitor) "$file" "$new_file"
   file="$new_file"
 fi
-return
 
 # Validate bag
 cartographer_rosbag_validate -bag_filename "$file"
@@ -61,6 +60,9 @@ mv "$file"* "$output_dir"
 cd "$output_dir" || exit
 mv "$(basename "$file").pbstream" "$(dirname "$file")"
 mv "$(basename "$file")" "$(dirname "$file")"
+
+# Save a small copy of pointcloud
+CloudCompare -SILENT -O "$output_dir/$filename.bag_point_cloud.ply" -SS RANDOM 5000000
 
 # Return to original directory
 cd "$cwd" || exit
