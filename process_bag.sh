@@ -22,6 +22,15 @@ for config_file in "${config_files[@]}"; do
   cp "$cwd/cartographer_config/$config_file" "install_isolated/share/cartographer_ros/$directory/ingenium_$config_file"
 done
 
+# Check if bag contains point or packets, if packets forcefully convert
+if ! [[ $( rosbag info "$file") =~ \/velodyne_points\ *[0-9]*\ msgs ]]; then
+  echo "Bag does not contain pointcloud, forcefully converting"
+  new_file="${file%.*}_pointcloud.bag"
+  $(find . -name inquisitor) "$file" "$new_file"
+  file="$new_file"
+fi
+return
+
 # Validate bag
 cartographer_rosbag_validate -bag_filename "$file"
 # Remove old .pbstream file
