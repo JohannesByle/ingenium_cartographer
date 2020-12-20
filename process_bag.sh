@@ -1,8 +1,14 @@
+#!/bin/bash
+
 # Get bag file from args
 cwd=$(pwd)
-file="$cwd/$1"
+file=$(realpath "$1")
 if [ ! -f "$file" ]; then
   echo "$file is not a file."
+  return 1
+fi
+if [ ! "${file##*.}" = "bag" ]; then
+  echo "$file is not a bag file"
   return 1
 fi
 
@@ -19,7 +25,7 @@ for config_file in "${config_files[@]}"; do
   if [ "$directory" == "lua" ]; then
     directory="configuration_files"
   fi
-  cp "$cwd/cartographer_config/$config_file" "install_isolated/share/cartographer_ros/$directory/ingenium_$config_file"
+  cp "$HOME/ingenium_cartographer/cartographer_config/$config_file" "install_isolated/share/cartographer_ros/$directory/ingenium_$config_file"
 done
 
 # Check if bag contains point or packets, if packets forcefully convert
@@ -30,6 +36,7 @@ if ! [[ $(rosbag info "$file") =~ \/velodyne_points\ *[0-9]*\ msgs ]]; then
   file="$new_file"
 fi
 
+filename="$(basename -- "$file" .bag)"
 # Validate bag
 cartographer_rosbag_validate -bag_filename "$file"
 # Remove old .pbstream file
@@ -50,7 +57,7 @@ roslaunch cartographer_ros ingenium_localization.launch pose_graph_filename:="$f
 cd "$(dirname "$file")" || exit
 
 # Make directory for new files
-output_dir="${file%.*}_output_files"
+output_dir="$filename"
 if [ ! -d "$output_dir" ]; then
   mkdir "$output_dir"
 fi
@@ -62,9 +69,10 @@ mv "$(basename "$file").pbstream" "$(dirname "$file")"
 mv "$(basename "$file")" "$(dirname "$file")"
 
 # Save a small copy of pointcloud
-filename=$(basename -- "$file")
-filename="${filename%.*}"
-CloudCompare -SILENT -O "$output_dir/$filename.bag_point_cloud.ply" -SS RANDOM 5000000
+CloudCompare -SILENT -O "$filename.bag_point_cloud.ply" -SS RANDOM 5000000
 
 # Return to original directory
 cd "$cwd" || exit
+
+echo "Bag fully processed, press any key to exit"
+read -r
