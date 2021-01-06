@@ -5,7 +5,7 @@ Bash scripts and config files for recording and slamming data for the Wheaton Co
 The order of these steps is very important, and not following this order can lead to irreparable problems with the installation.
 
 1. Install ROS Noetic using their [guide](http://wiki.ros.org/noetic/Installation/Ubuntu)
-2. Install Cartographer ROS their [guide](https://google-cartographer-ros.readthedocs.io/en/latest/compilation.html)
+2. Install Cartographer ROS their [guide](https://google-cartographer-ros.readthedocs.io/en/latest/compilation.html). This step can be skipped if cartographer is not needed and the repo is only being used to record data.
     1. At the end of this process you should have a directory called `catkin_ws` in your home directory, i.e `~/catkin_ws/`
     2. This directory should have the following structure\
       catkin_ws/\
