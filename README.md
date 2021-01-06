@@ -15,11 +15,11 @@ The order of these steps is very important, and not following this order can lea
       ├─ src/
 3. Download the binaries for the MSCL library. This [link](https://github.com/LORD-MicroStrain/MSCL/releases/download/v61.0.16/c++-mscl_61.0.16_amd64.deb) will start the download.
     1. Install the binaries using dpgk
-    ```
-    cd ~/Downloads
-    sudo dpkg -i c++-mscl_61.0.16_amd64.deb
-    sudo apt install -f     
-    ```
+        ```
+        cd ~/Downloads
+        sudo dpkg -i c++-mscl_61.0.16_amd64.deb
+        sudo apt install -f     
+        ```
 4. Clone the ingenium_cartographer repository into your home directory
     ```
     cd ~
