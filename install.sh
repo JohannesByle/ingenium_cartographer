@@ -1,5 +1,5 @@
 cwd=$(pwd)
-catkin_dir=~/catkin_ws_test/
+catkin_dir=~/catkin_ws/
 
 function clone_at_commit() {
   url=$1
