@@ -13,12 +13,19 @@ The order of these steps is very important, and not following this order can lea
       ├─ devel_isolated/\
       ├─ install_isolated/\
       ├─ src/
-3. Clone the ingenium_cartographer repository into your home directory
+3. Download the binaries for the MSCL library. This [link](https://github.com/LORD-MicroStrain/MSCL/releases/download/v61.0.16/c++-mscl_61.0.16_amd64.deb) will start the download.
+    1. Install the binaries using dpgk
+    ```
+    cd ~/Downloads
+    sudo dpkg -i c++-mscl_61.0.16_amd64.deb
+    sudo apt install -f     
+    ```
+4. Clone the ingenium_cartographer repository into your home directory
     ```
     cd ~
     git clone https://github.com/JohannesByle/ingenium_cartographer
     ```
-4. Run the custom installation script within ingenium_cartographer to finish installing the rest of the dependencies
+5. Run the custom installation script within ingenium_cartographer to finish installing the rest of the dependencies
     ```
     cd ~/ingenium_cartographer
     . ./install.sh
