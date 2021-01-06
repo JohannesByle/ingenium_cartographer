@@ -29,3 +29,6 @@ The order of these steps is very important, and not following this order can lea
     cd ~/ingenium_cartographer
     . ./install.sh
     ```
+6. Setting up for use without the command line (optional)
+    1. Change default behavior for executable text files by edititing the nautilus preferences. The preferences can be found by clicking the hamburger button in the Files app `Preferences > Behavior > Executable Text Files > Run them`
+    2. Right click on the file you want to make clickable (process_bag_gui.sh) and open properties. Check the `Allow executing file as program` under the `Permissions` tab.
