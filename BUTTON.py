@@ -29,7 +29,7 @@ while True:
 
     #waiting for start signal
     GPIO.wait_for_edge(start, GPIO.RISING)
-    os.system('/home/ubuntu/ingenium_cartographer/record_to_bag.sh &')
+    os.system('. /home/ubuntu/ingenium_cartographer/record_to_bag.sh &')
     print('start')
 
     #waiting for stop button to be pressed. Then run kill part of record script

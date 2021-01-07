@@ -1,7 +1,8 @@
+#!/bin/bash
 # Run cartographer setup
-source ~/catkin_ws/install_isolated/setup.bash
-
+# source /opt/ros/noetic/setup.bash
 # Start the connection to the imu (and start roscore in the background)
+cd /home/ubuntu/ingenium_cartographer
 roslaunch ros_mscl microstrain.launch&
 sleep 2
 
@@ -13,14 +14,3 @@ sleep 2
 rosbag record /gx5/imu/data /velodyne_packets&
 sleep 2
 
-# Wait for user input and then attempt to kill gracefully
-exit_code="n"
-while [[ "$exit_code" != "y" ]]; do
-  read -r -s -p "Stop recording (y/n): " exit_code
-  printf '\n'
-done
-echo "$exit_code"
-echo "Exiting gracefully:"
-rosnode kill -a &
-sleep 5
-pkill roscore 
