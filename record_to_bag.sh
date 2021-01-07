@@ -1,3 +1,6 @@
+# Run cartographer setup
+source ~/catkin_ws/install_isolated/setup.bash
+
 # Start the connection to the imu (and start roscore in the background)
 roslaunch ros_mscl microstrain.launch&
 sleep 2
