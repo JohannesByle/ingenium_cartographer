@@ -10,4 +10,6 @@ else
 fi
 
 CloudCompare -SILENT -AUTO_SAVE OFF -C_EXPORT_FMT PLY -O "$file1" -O "$file2" -ICP $switch -SAVE_CLOUDS FILE "$file1.registered.ply $file2.registered.ply"
-CloudCompare -SILENT -AUTO_SAVE OFF -C_EXPORT_FMT BIN -O "$file1.registered.ply" -O "$file2.registered.ply" -c2c_dist -split_xyz -model HF SPHERE 0.01 -SAVE_CLOUDS FILE "$file1.color_distance.bin $(mktemp)"
+CloudCompare -SILENT -AUTO_SAVE OFF -C_EXPORT_FMT BIN -O "$file1.registered.ply" -SS RANDOM 5000000 -O "$file2.registered.ply" -SS RANDOM 5000000 -c2c_dist -split_xyz -model HF SPHERE 0.01 -SAVE_CLOUDS FILE "$file1.color_distance.bin $(mktemp)"
+echo "Subtraction completed, press any key to exit"
+read -r
