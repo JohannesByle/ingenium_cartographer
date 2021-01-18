@@ -79,8 +79,6 @@ Visualization Manager:
           Value: true
         odom:
           Value: true
-      #        vertical_vlp16_link:
-      #          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
@@ -120,11 +118,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-      #        vertical_vlp16_link:
-      #          Alpha: 1
-      #          Show Axes: false
-      #          Show Trail: false
-      #          Value: true
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -156,37 +149,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.03
       Style: Flat Squares
-      Topic: /horizontal_laser_3d
-      Unreliable: false
-      Use Fixed Frame: true
-      Use rainbow: true
-      Value: false
-    - Alpha: 1
-      Autocompute Intensity Bounds: true
-      Autocompute Value Bounds:
-        Max Value: 5.6087
-        Min Value: 3.77875
-        Value: true
-      Axis: Z
-      Channel Name: intensity
-      Class: rviz/PointCloud2
-      Color: 240; 220; 20
-      Color Transformer: FlatColor
-      Decay Time: 0.1
-      Enabled: false
-      Invert Rainbow: true
-      Max Color: 255; 255; 255
-      Max Intensity: 4096
-      Min Color: 0; 0; 0
-      Min Intensity: 0
-      Name: PointCloud2
-      Position Transformer: XYZ
-      Queue Size: 200
-      Selectable: true
-      Size (Pixels): 3
-      Size (m): 0.03
-      Style: Flat Squares
-      Topic: /vertical_laser_3d
+      Topic: /velodyne_points
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true

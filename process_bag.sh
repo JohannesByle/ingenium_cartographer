@@ -3,6 +3,11 @@
 # Get bag file from args
 cwd=$(pwd)
 file=$(realpath "$1")
+if [ "$2" = "-v" ]; then
+  visualize=true
+else
+  visualize=false
+fi
 if [ ! -f "$file" ]; then
   echo "$file is not a file."
   return 1
@@ -19,7 +24,7 @@ source /opt/ros/noetic/setup.bash
 # Run cartographer setup
 source install_isolated/setup.bash
 
-config_files=("slam.launch" "slam.lua" "localization.launch" "localization.lua" "lidar_stick.urdf")
+config_files=("slam.launch" "slam.lua" "localization.launch" "localization.lua" "lidar_stick.urdf" "slam_visualize.launch")
 for config_file in "${config_files[@]}"; do
   directory="${config_file##*.}"
   if [ "$directory" == "lua" ]; then
@@ -45,7 +50,11 @@ if [ -f "$file.pbstream" ]; then
   rm "$file.pbstream"
 fi
 # Start slam
-roslaunch cartographer_ros ingenium_slam.launch bag_filenames:="$file" urdf_filename:="$file/cartographer_config/lidar_stick.urdf" &
+if $visualize; then
+  roslaunch cartographer_ros ingenium_slam_visualize.launch bag_filename:="$file" urdf_filename:="~/ingenium_cartographer/cartographer_config/lidar_stick.urdf" &
+else
+  roslaunch cartographer_ros ingenium_slam.launch bag_filenames:="$file" urdf_filename:="~/ingenium_cartographer/cartographer_config/lidar_stick.urdf" &
+fi
 # Wait for slam to finish
 while [ ! -f "$file.pbstream" ]; do
   sleep 5
