@@ -44,7 +44,6 @@ options = {
 }
 
 TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 160
-TRAJECTORY_BUILDER_3D.ceres_scan_matcher.rotation_weight = 1e-3
 
 MAP_BUILDER.use_trajectory_builder_3d = true
 MAP_BUILDER.num_background_threads = 7
@@ -54,6 +53,7 @@ POSE_GRAPH.constraint_builder.sampling_ratio = 0.03
 POSE_GRAPH.optimization_problem.ceres_solver_options.max_num_iterations = 10
 POSE_GRAPH.constraint_builder.min_score = 0.62
 POSE_GRAPH.constraint_builder.global_localization_min_score = 0.66
+POSE_GRAPH.optimization_problem.log_solver_summary = true
 
 return options
 
