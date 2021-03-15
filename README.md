@@ -5,7 +5,7 @@ Bash scripts and config files for recording and slamming data for the Wheaton Co
 The order of these steps is very important, and not following this order can lead to irreparable problems with the installation.
 
 1. Install ROS Noetic using their [guide](http://wiki.ros.org/noetic/Installation/Ubuntu)
-2. If you are doing thinds other than just recording data (i.e processing recordings) go to step 3, othwerwise skip step 3 and run the following commands:
+2. If you are doing things other than just recording data (i.e processing recordings) go to step 3, othwerwise skip step 3 and run the following commands:
     ```
     mkdir catkin_ws
     cd catkin_ws
