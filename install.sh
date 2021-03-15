@@ -1,6 +1,15 @@
 cwd=$(pwd)
 catkin_dir=~/catkin_ws/
 
+function catkin_make_custom() {
+if [ -d "~/catkin_ws/src/cartographer" ] 
+then
+    catkin_make_isolated --install --use-ninja
+else
+    catkin_make
+fi
+}
+
 function clone_at_commit() {
   url=$1
   commit=$2
@@ -22,12 +31,12 @@ mv ROS-MSCL/ros_mscl ros_mscl
 sudo rm -r ROS-MSCL
 
 cd $catkin_dir/ || exit
-catkin_make_isolated --install --use-ninja
+catkin_make_custom
 
 cd $catkin_dir/src || exit
 sudo rm -r velodyne
 git clone https://github.com/JohannesByle/velodyne
 
 cd $catkin_dir/ || exit
-catkin_make_isolated --install --use-ninja
+catkin_make_custom
 cd "$cwd" || exit
