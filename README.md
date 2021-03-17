@@ -10,8 +10,6 @@ The order of these steps is very important, and not following this order can lea
     mkdir catkin_ws
     cd catkin_ws
     wstool init src
-    wstool merge -t src https://raw.githubusercontent.com/cartographer-project/cartographer_ros/master/cartographer_ros.rosinstall
-    wstool update -t src
     ```
 3. Install Cartographer ROS their [guide](https://google-cartographer-ros.readthedocs.io/en/latest/compilation.html). 
     1. At the end of this process you should have a directory called `catkin_ws` in your home directory, i.e `~/catkin_ws/`
