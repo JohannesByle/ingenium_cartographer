@@ -27,8 +27,6 @@ clone_at_commit https://github.com/ros-drivers/velodyne f235ac6b0d1728e97de552f3
 
 # This stage of the repo was tested to be working, but may not work with future ROS releases
 clone_at_commit https://github.com/LORD-MicroStrain/ROS-MSCL 57b566a633b8f7a8bfbc866a168f2b9599de8b1c
-mv ROS-MSCL/ros_mscl ros_mscl
-sudo rm -r ROS-MSCL
 
 cd $catkin_dir/ || exit
 catkin_make_custom
