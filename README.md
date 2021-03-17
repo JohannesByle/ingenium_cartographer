@@ -21,7 +21,7 @@ The order of these steps is very important, and not following this order can lea
       ├─ devel_isolated/\
       ├─ install_isolated/\
       ├─ src/
-4. Download the binaries for the MSCL library. This [link](https://github.com/LORD-MicroStrain/MSCL/releases/download/v61.0.16/c++-mscl_61.0.16_amd64.deb) will start the download. Once the download has finished install the binaries using dpgk.
+4. Download the binaries for the MSCL library. Use this [link](https://github.com/LORD-MicroStrain/MSCL/releases/download/v61.1.6/c++-mscl_61.1.6_armhf.deb) if installing on a Pi, and use [link](https://github.com/LORD-MicroStrain/MSCL/releases/download/v61.1.6/c++-mscl_61.1.6_amd64.deb) if you are installing on Ubuntu. Clicking the link will start the download. Once the download has finished install the binaries using dpgk.
     ```
     cd ~/Downloads
     sudo dpkg -i c++-mscl_61.0.16_amd64.deb
