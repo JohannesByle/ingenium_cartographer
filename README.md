@@ -1,9 +1,9 @@
 # ingenium_cartographer
 Bash scripts and config files for recording and slamming data for the Wheaton College Tel Shimron lidar project
-# If installing on Pi, make sure to add a swap file. Typically do 4G instead of the 2G listed [here](https://linuxize.com/post/how-to-add-swap-space-on-ubuntu-20-04/)
 
 ## Installation Instructions
 The order of these steps is very important, and not following this order can lead to irreparable problems with the installation.
+0. If installing on Pi, make sure to add a swap file. Typically do 4G instead of the 2G listed [here](https://linuxize.com/post/how-to-add-swap-space-on-ubuntu-20-04/)
 
 1. Install ROS Noetic using their [guide](http://wiki.ros.org/noetic/Installation/Ubuntu)
 2. If you are doing things other than just recording data (i.e processing recordings) go to step 3, othwerwise skip step 3 and run the following commands:
