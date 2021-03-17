@@ -3,6 +3,7 @@ Bash scripts and config files for recording and slamming data for the Wheaton Co
 
 ## Installation Instructions
 The order of these steps is very important, and not following this order can lead to irreparable problems with the installation.
+
 0. If installing on Pi, make sure to add a swap file. Typically do 4G instead of the 2G listed [here](https://linuxize.com/post/how-to-add-swap-space-on-ubuntu-20-04/)
 
 1. Install ROS Noetic using their [guide](http://wiki.ros.org/noetic/Installation/Ubuntu)
