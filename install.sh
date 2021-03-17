@@ -31,10 +31,13 @@ clone_at_commit https://github.com/LORD-MicroStrain/ROS-MSCL e3703a0608536a6d226
 cd $catkin_dir/ || exit
 catkin_make_custom
 
+if [ -d "~/catkin_ws/src/cartographer" ] 
+then
 cd $catkin_dir/src || exit
 sudo rm -r velodyne
 git clone https://github.com/JohannesByle/velodyne
 
 cd $catkin_dir/ || exit
 catkin_make_custom
+fi
 cd "$cwd" || exit
