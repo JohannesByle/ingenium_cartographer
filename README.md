@@ -1,5 +1,6 @@
 # ingenium_cartographer
 Bash scripts and config files for recording and slamming data for the Wheaton College Tel Shimron lidar project
+![Screenshot](blanchard.png)
 
 ## Installation Instructions
 The order of these steps is very important, and not following this order can lead to irreparable problems with the installation.
