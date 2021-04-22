@@ -56,11 +56,14 @@ MAP_BUILDER.num_background_threads = 7
 -- The following settings affect the global slam
 POSE_GRAPH.optimization_problem.huber_scale = 5e2
 POSE_GRAPH.optimize_every_n_nodes = 320
+-- 0= No global slam for optimize every n nodes
 POSE_GRAPH.constraint_builder.sampling_ratio = 0.03
 POSE_GRAPH.optimization_problem.ceres_solver_options.max_num_iterations = 10
 POSE_GRAPH.constraint_builder.min_score = 0.62
 POSE_GRAPH.constraint_builder.global_localization_min_score = 0.66
 POSE_GRAPH.optimization_problem.log_solver_summary = true
+
+--voxel size should stay small
 
 return options
 
