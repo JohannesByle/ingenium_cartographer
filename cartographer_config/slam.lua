@@ -46,8 +46,8 @@ options = {
 TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 160
 
 -- These settings affect the resolution of the map stored by Cartographer
--- TRAJECTORY_BUILDER_3D.submaps.high_resolution = 0.01
--- TRAJECTORY_BUILDER_3D.submaps.low_resolution = 0.1
+TRAJECTORY_BUILDER_3D.submaps.high_resolution = 0.15
+TRAJECTORY_BUILDER_3D.submaps.low_resolution = 0.15
 
 MAP_BUILDER.use_trajectory_builder_3d = true
 MAP_BUILDER.num_background_threads = 7
