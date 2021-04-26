@@ -43,7 +43,15 @@ options = {
     landmarks_sampling_ratio = 1.,
 }
 
+-- This should not be changed unless the frequency of the lidar is changed, this is how many many scans per rotation of the lidar
 TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 160
+-- The following setting changes how big the submaps are, i.e. the larger the number the larger the submap and the fewer submaps in total
+-- TRAJECTORY_BUILDER_3D.submaps.num_range_data = 1e7	
+
+-- This looks promising, and worked well for indoor slams, but worked really poorly in outdoor slams.
+-- But the poor result in outdoor slams may be a function of poor choices in other settings
+-- TRAJECTORY_BUILDER_3D.use_online_correlative_scan_matching = true
+
 
 -- These settings affect the resolution of the map stored by Cartographer
 -- TRAJECTORY_BUILDER_3D.submaps.high_resolution = 0.05
@@ -52,13 +60,22 @@ TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 160
 -- Higer resolution going from 0.15 ro 0.05 helped the scan
 --0.015 for high did not change it much when set to 0.05 before
 
+-- These settings affect the resolution as well
+-- I'm not sure about the voxel filter size and max_length, but min_num_points on its own seems to work really well
+-- TRAJECTORY_BUILDER_3D.voxel_filter_size = 0.1
+-- TRAJECTORY_BUILDER_3D.high_resolution_adaptive_voxel_filter.max_length = 0.1
+-- TRAJECTORY_BUILDER_3D.high_resolution_adaptive_voxel_filter.min_num_points = 1e7
+
 MAP_BUILDER.use_trajectory_builder_3d = true
 MAP_BUILDER.num_background_threads = 7
 
 -- The following settings affect the global slam
 POSE_GRAPH.optimization_problem.huber_scale = 5e2
+-- Set the optimize_every_n_nodex to 0 to turn of global slam
+-- One theory is that turning off global slam might improve the slam since we are never move away from our inital measuring point
+-- i.e when measuring a dig site the majority of the dig site is constantly visible, and we don't move away from it.
+-- Turning off the global slam would then be joined with making the submaps huge, i.e just one big submap rather than many small ones.
 POSE_GRAPH.optimize_every_n_nodes = 320
--- 0= No global slam for optimize every n nodes
 POSE_GRAPH.constraint_builder.sampling_ratio = 0.03
 POSE_GRAPH.optimization_problem.ceres_solver_options.max_num_iterations = 10
 POSE_GRAPH.constraint_builder.min_score = 0.62
