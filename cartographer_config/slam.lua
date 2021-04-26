@@ -64,6 +64,7 @@ TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 160
 -- I'm not sure about the voxel filter size and max_length, but min_num_points on its own seems to work really well
 -- TRAJECTORY_BUILDER_3D.voxel_filter_size = 0.1
 -- TRAJECTORY_BUILDER_3D.high_resolution_adaptive_voxel_filter.max_length = 0.1
+-- This makes each frame use at least 10 mil points in the slam
 -- TRAJECTORY_BUILDER_3D.high_resolution_adaptive_voxel_filter.min_num_points = 1e7
 
 MAP_BUILDER.use_trajectory_builder_3d = true
