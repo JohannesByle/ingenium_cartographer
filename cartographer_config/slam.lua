@@ -62,6 +62,7 @@ TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 160
 -- TRAJECTORY_BUILDER_3D.max_range = 10
 
 -- These settings affect the resolution of the map stored by Cartographer
+-- My current guess is that we want both numbers as small as possible without the slam messing up, so tune the other settings to make these smaller
 -- TRAJECTORY_BUILDER_3D.submaps.high_resolution = 0.05
 -- TRAJECTORY_BUILDER_3D.submaps.low_resolution = 0.15
 -- As of 4/22 these seems best for these settings
