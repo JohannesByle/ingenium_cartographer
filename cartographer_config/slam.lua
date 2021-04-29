@@ -49,9 +49,17 @@ TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 160
 -- TRAJECTORY_BUILDER_3D.submaps.num_range_data = 1e7	
 
 -- This looks promising, and worked well for indoor slams, but worked really poorly in outdoor slams.
--- But the poor result in outdoor slams may be a function of poor choices in other settings
+-- But the poor result in outdoor slams may be a function of poor choices in other settings, or it may be the lack of a "feature rich enviornment" outdoors
 -- TRAJECTORY_BUILDER_3D.use_online_correlative_scan_matching = true
 
+-- These settings are how much to trust the imu
+-- TRAJECTORY_BUILDER_3D.ceres_scan_matcher.translation_weight = 1e3
+-- TRAJECTORY_BUILDER_3D.ceres_scan_matcher.rotation_weight = 1e3
+
+-- This setting changes the what range data should be included in the slam
+-- Ignoring far away points might be good for exluding noisy points, but the more landmarks there are the easier it is for cartogrpaher
+-- TRAJECTORY_BUILDER_3D.min_range = 2
+-- TRAJECTORY_BUILDER_3D.max_range = 10
 
 -- These settings affect the resolution of the map stored by Cartographer
 -- TRAJECTORY_BUILDER_3D.submaps.high_resolution = 0.05
